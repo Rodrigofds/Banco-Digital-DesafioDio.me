@@ -2,15 +2,23 @@ import java.math.BigDecimal;
 
 public abstract class Conta implements IConta {
 
-	private int agencia;
-	private int numero;
-	private BigDecimal saldo;
+	private static final Long AGENCIA_PADRAO = 1L;	
+	private static Long SEQUENCIAL = 1L;
 	
-	public int getAgencia() {
+	protected Long agencia;
+	protected Long numero;
+	protected BigDecimal saldo;
+	
+	public Conta() {
+		this.agencia = Conta.AGENCIA_PADRAO;
+		this.numero = SEQUENCIAL++;
+	}
+
+	public Long getAgencia() {
 		return agencia;
 	}
 
-	public int getNumero() {
+	public Long getNumero() {
 		return numero;
 	}
 
