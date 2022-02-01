@@ -1,5 +1,3 @@
-import java.math.BigDecimal;
-
 public abstract class Conta implements IConta {
 
 	private static final Long AGENCIA_PADRAO = 1L;	
@@ -7,7 +5,7 @@ public abstract class Conta implements IConta {
 	
 	protected Long agencia;
 	protected Long numero;
-	protected BigDecimal saldo;
+	protected double saldo;
 	
 	public Conta() {
 		this.agencia = Conta.AGENCIA_PADRAO;
@@ -22,36 +20,35 @@ public abstract class Conta implements IConta {
 		return numero;
 	}
 
-	public BigDecimal getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
 	@Override
-	public void sacar(BigDecimal valor) {
-		// TODO Auto-generated method stub
-		
+	public void sacar(double valor) {
+		this.saldo -= valor;
 	}
 
 	@Override
-	public void depositar(BigDecimal valor) {
-		// TODO Auto-generated method stub
-		
+	public void depositar(double valor) {
+		this.saldo += valor;
 	}
 
 	@Override
-	public void transferir(BigDecimal valor, Conta contaDestino) {
-		// TODO Auto-generated method stub
-		
+	public void transferir(double valor, Conta contaDestino) {
+		this.sacar(valor);
+		contaDestino.depositar(valor);
 	}
 
-	@Override
-	public void saldo() {
-		// TODO Auto-generated method stub
-		
+	protected void imprimirInfosComuns() {
+		System.out.println(String.format("Agência: %d", this.agencia));
+		System.out.println(String.format("Número: %d", this.numero));
+		System.out.println(String.format("Saldo: %.2f", this.saldo));
 	}
+
 
 }

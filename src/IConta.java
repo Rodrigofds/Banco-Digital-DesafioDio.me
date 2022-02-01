@@ -1,13 +1,11 @@
-import java.math.BigDecimal;
-
 public interface IConta {
 	
-	public void sacar(BigDecimal valor);
+	void sacar(double valor);
 	
-	public void depositar(BigDecimal valor);
+	void depositar(double valor);
 	
-	public void transferir(BigDecimal valor, Conta contaDestino);
+	void transferir(double valor, Conta contaDestino);
 	
-	public void saldo();
+	void imprimirExtrato();
 
 }
